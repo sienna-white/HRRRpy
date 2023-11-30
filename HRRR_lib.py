@@ -39,7 +39,7 @@ class HRRR:
     def check_if_analysis(self):
         ''' Check if this netcdf is output from GSI''' 
         variables = self.ds.data_vars 
-        print(variables)
+        #print(variables)
         if 'PM2_5_DRY_INIT' in variables:
             print('This is a HRRR Analysis Field!')
             self.analysis = True 
@@ -139,7 +139,7 @@ class HRRR:
         # Fixed values for setting up the plot
         cart_proj = crs.PlateCarree() #crs.LambertConformal() 
         cmap = cmocean.cm.tempo     # Colormap
-        units = '$\mu$g/m$^3$'
+        units = r'$\mu$g/m$^3$'
 
         # Create plot 
         fig, axs = plt.subplots(nrows=1,ncols=3, figsize=(11,5),subplot_kw={'projection': cart_proj})
@@ -220,7 +220,7 @@ class HRRR:
         # Fixed values for setting up the plot
         cart_proj = crs.PlateCarree() #crs.LambertConformal() 
         cmap = cmocean.cm.matter     # Colormap
-        units = '$\mu$g/m$^3$'
+        units = r'$\mu$g/m$^3$'
 
         # Create plot 
         fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,5),subplot_kw={'projection': cart_proj})
