@@ -250,7 +250,7 @@ class HRRR:
                         cmap=cmap, vmin = 0, vmax = vmax) 
         add_cbar(ax, a)
         ax.scatter(x = data.longitude, y = data.latitude,  c = data['PM2.5'], 
-                    vmin = 0, vmax = vmax, cmap=cmap, edgecolors='black', label = 'AQS observed PM2.5')
+                     vmin = 0, vmax = vmax, cmap=cmap, edgecolors='black', label = 'AQS observed PM2.5')
 
         ax.set_title(title)
         ax.legend()
