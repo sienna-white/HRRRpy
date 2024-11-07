@@ -24,9 +24,10 @@ print('Date = %s' % date)
 #dfn ='/global/home/users/siennaw/scratch/data/obs/aqs/source/dat/AQS_%s.dat' % date 
 dfn ='/global/scratch/users/siennaw/data/obs/aqs/source/dat/AQS_%s.dat' % date 
 hrrr = HRRR(fn)
-hrrr.plot_variable_with_data(data_fn = dfn, before = True, vmax = 200)
-hrrr.plot_variable_with_data(data_fn = dfn, before = False, vmax = 200)
-hrrr.plot_comparison(vmax = 200) 
+hrrr.set_date(date)
+hrrr.plot_variable_with_data(data_fn = dfn, before = True, vmax = 100)
+hrrr.plot_variable_with_data(data_fn = dfn, before = False, vmax = 100)
+hrrr.plot_comparison(vmax = 100) 
 
 
 
