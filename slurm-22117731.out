@@ -1,2 +1,0 @@
-ERROR 1: PROJ: proj_create_from_database: Open of /global/home/users/siennaw/.conda/envs/smoke_env/share/proj failed
-slurmstepd: error: *** JOB 22117731 ON n0192.savio3 CANCELLED AT 2024-11-05T12:30:17 DUE TO TIME LIMIT ***

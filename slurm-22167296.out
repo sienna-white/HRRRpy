@@ -1,0 +1,65 @@
+Loaded Purple Air data successfully. Number of entries: 32649
+Cropped Purple Air data successfully. Number of entries: 16359
+Cropped Purple Air data successfully. Number of entries: 16032
+1731017836.9924629
+
+
+ On 0/361
+Loop took 0.012838 seconds
+
+
+ On 100/361
+Loop took 0.000130 seconds
+
+
+ On 200/361
+Loop took 0.000119 seconds
+
+
+ On 300/361
+Loop took 0.022381 seconds
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112200
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112201
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112202
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112203
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112204
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112205
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112206
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112207
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112208
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112209
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112210
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112211
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112212
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112213
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112214
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112215
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112216
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112217
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112218
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112219
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112220
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112221
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112222
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112223
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112300
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112301
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112302
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112303
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112304
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112305
+Couldn't find file /global/scratch/users/siennaw/gsi_2024/output/107/wrf_inout_2018112306
+       sensor                time    pm25_PA  model_before_da  model_after_da
+174       411 2018-11-08 06:00:00  16.697289     8.735359e-17        7.625286
+175       411 2018-11-08 07:00:00  13.045209     9.392899e-17        8.093315
+176       411 2018-11-08 08:00:00  10.483980     9.223371e-17        9.294711
+177       411 2018-11-08 09:00:00  10.760934     9.284023e-17        9.195582
+178       411 2018-11-08 10:00:00  11.683981     5.530470e-04        9.821441
+...       ...                 ...        ...              ...             ...
+32453   19451 2018-11-23 02:00:00   2.929816     7.598058e-01        4.232067
+32454   19451 2018-11-23 03:00:00   3.664768     7.598058e-01        4.232067
+32455   19451 2018-11-23 04:00:00   1.739897     7.598058e-01        4.232067
+32456   19451 2018-11-23 05:00:00   1.906668     7.598058e-01        4.232067
+32457   19451 2018-11-23 06:00:00   0.867852     7.598058e-01        4.232067
+
+[16032 rows x 5 columns]
