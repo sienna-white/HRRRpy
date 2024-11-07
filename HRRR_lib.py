@@ -21,6 +21,7 @@ class HRRR:
     '''
     def __init__(self, fn):
         # assign input text to self.text
+        print("Trying to open %s" % fn)
         self.filepath = fn 
 
         if not os.path.isfile(fn):
@@ -31,7 +32,7 @@ class HRRR:
         else: 
             ds = xr.open_dataset(fn)
             self.ds = ds
-            self.strip_time_info()
+            # self.strip_time_info()
             self.lats = np.squeeze(ds['XLAT'].isel(Time=0)) 
             self.lons = np.squeeze(ds['XLONG'].isel(Time=0))
             self.check_if_analysis()
@@ -45,7 +46,14 @@ class HRRR:
             self.analysis = True 
         else:
             self.analysis = False 
+        self.var_before = self.ds['PM2_5_DRY_INIT'].isel(bottom_top=0).isel(Time=0)
+        self.var_after = self.ds['PM2_5_DRY'].isel(bottom_top=0).isel(Time=0)
 
+    def set_date(self,datestring):
+        date = pd.to_datetime(datestring, format='%Y%m%d%H')
+        print('Opened model results from %s' % date.strftime('%B %d, %Y @ %H:%M'))
+        self.time = date 
+        self.time_str = date.strftime('%B %d, %Y at %H:%M')
 
     def strip_time_info(self):
         ''' Read out the datetime string the model date. Save in various formats''' 
@@ -65,6 +73,58 @@ class HRRR:
 ############################################
 #####       PLOT VARIABLE             ######
 ############################################
+    def plot_interpolated_obs(self, data, fout=None, level=0, vmin=None, vmax=None, color='turbid'): 
+
+        ds = self.ds
+
+        variable  = data 
+
+        # Fixed values for setting up the plot
+        cart_proj = crs.PlateCarree() #crs.LambertConformal() 
+
+        # Colormap
+        cmap = cmocean.cm.matter
+       
+        # Create plot 
+        fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(6,5),subplot_kw={'projection': cart_proj})
+
+        if vmin is None:
+            vmin = variable.quantile(0.10).item()
+        
+        if vmax is None:
+            vmax = variable.quantile(0.90).item()
+
+        def mask_array(variable):
+            threshold = 0
+            return np.ma.array (variable, mask=variable<threshold)
+
+        # Format axes
+        ax.gridlines(alpha = 0.25) 
+        ax.add_feature(cartopy.feature.STATES.with_scale('50m'))
+
+        # Axis 1: Variable before assimilation
+        mesh = ax.pcolormesh(self.lons, self.lats, mask_array(variable), 
+                        transform=crs.PlateCarree(), 
+                        cmap = cmap, 
+                        vmin = vmin, 
+                        vmax = vmax)  
+
+        # units = variable.units 
+        cbar = plt.colorbar(mesh, shrink = 0.4, orientation="horizontal" , label = "PM2.5")
+        # cbar.set_label(units)
+
+        text = '%s on %s' % ("Interpolated smoke", self.time_str) 
+        ax.set_title(text)
+
+        plt.tight_layout()
+
+        # Save figure as ...  
+        if fout is None:
+            fout = os.getcwd()
+        return fig, ax
+        
+
+
     def plot_var(self, var, fout=None, level=0, vmin=None, vmax=None, color='turbid'): 
 
         ds = self.ds
@@ -177,7 +237,8 @@ class HRRR:
         axs[1].set_title('Resulting Analysis Field')
 
         # Axis 3: Difference between the two
-        lim = np.max(abs(difference.values))
+        # lim = np.max(abs(difference.values))
+        lim = 5 
         a = axs[2].pcolormesh(self.lons, self.lats, difference, transform=crs.PlateCarree(), 
                         cmap=cmocean.cm.balance, vmin = -lim, vmax = lim)  
         axs[2].set_title('Difference (Analysis- Bkg)')
