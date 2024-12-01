@@ -50,14 +50,11 @@ data_out = pd.DataFrame.from_dict(dict_out, orient='index')
 
 np.save('PA_to_HRRRgrid.npy', dict_out) 
 
-
 data_out_fn = "PA_to_HRRRgrid.csv"
 with open(data_out_fn, 'w') as file:
     file.write('purple air sensors matched to index in HRRR-Smoke grid. Each column is a grid index + distance from that point to PA sensor.')
     data_out.to_csv(file, header=True, index=False)
 
-
-assert(False)
     # Compute the weighted average of the nearest values
     # interpolated_value = np.sum(weights * nearest_values) / np.sum(weights)
 

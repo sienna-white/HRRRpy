@@ -1,8 +1,9 @@
 
 import sys
 import os 
-if os.getcwd() not in sys.path: # Add the current directory to the Python path
-    sys.path.append(os.getcwd())
+script="/global/scratch/users/siennaw/scripts/HRRRpy"
+if script not in sys.path: # Add the current directory to the Python path
+    sys.path.append(script)
 from HRRR_lib import HRRR 
 import pandas as pd 
 import re 
@@ -22,7 +23,7 @@ print('Date = %s' % date)
 
 # AQS Data
 #dfn ='/global/home/users/siennaw/scratch/data/obs/aqs/source/dat/AQS_%s.dat' % date 
-dfn ='/global/scratch/users/siennaw/data/obs/aqs/source/dat/AQS_%s.dat' % date 
+dfn = '/global/scratch/users/siennaw/data/obs/aqs/source/dat/AQS_%s.dat' % date 
 hrrr = HRRR(fn)
 hrrr.set_date(date)
 hrrr.plot_variable_with_data(data_fn = dfn, before = True, vmax = 100)

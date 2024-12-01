@@ -1,3 +1,4 @@
+print("here0")
 import sys
 import os 
 if os.getcwd() not in sys.path: # Add the current directory to the Python path
@@ -15,9 +16,10 @@ import matplotlib.dates as mdates
 hours = mdates.HourLocator(interval = 48)  #
 h_fmt = mdates.DateFormatter('%m/%d')
 
+
 # ~/.conda/envs/smoke_env/bin/python
 
-times = pd.date_range("Nov 08 2018 06:00", "Nov 20 2018 23:00", freq='1h')
+times = pd.date_range("Nov 08 2018 06:00", "Nov 21 2018 23:00", freq='1h')
 
 # ******************************* HRRR SMOKE ***********************************
 fn ="/global/scratch/users/siennaw/gsi_2024/output/101/wrf_inout_2018111101"
@@ -49,9 +51,7 @@ lats = mlat.ravel()
 lons = mlon.ravel()
 mx, my = transform0.transform(lats, lons)
 
-
-
-file = 102
+file = 105
     
 def ind4site(pa_lat, pa_lon):
     # print("\t Calculating the haversine_vector...")

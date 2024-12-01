@@ -12,12 +12,12 @@ if len(sys.argv) > 1:
 # Otherwise just hardcode it:
 # file = 101
 
+
 print("Running for file %d" % file) 
 
 start_date = '2018110806'   # Starting date for the files we want to look at 
 ndays = 14                # Number of days to look at
  
-
 
 # *** Functions ***
 def to_file_date(datetime_obj):
@@ -29,7 +29,6 @@ start_date_dt = pd.to_datetime(start_date, format="%Y%m%d%H")
 end_date_dt = start_date_dt + pd.Timedelta(days=ndays)
 times = pd.date_range(start_date_dt, end_date_dt, freq="1h")
 # *********************************************************************
-
 
 ### Parse month, date, year
 assert(end_date_dt.month == start_date_dt.month ) # script can't handle multiple months rn 
@@ -71,10 +70,7 @@ COMPARE["model_after_da"] = np.nan
 map_PA2HRRR = np.load('PA_to_HRRRgrid.npy',allow_pickle='TRUE').item()
 # *********************************************************************
 
-
-
 # file = 102
-
 
 t0 = timing.time()
 print(t0)
@@ -83,6 +79,7 @@ for t,time in enumerate(times):
         if t % 100 == 0:
             print("\n\n On %d/%d" % (t, len(times)))
             print("Loop took %f seconds" % (timing.time() - t0))
+            t0 = timing.time()
 
         # Select out the purple air data for that time stamp
         df_pa_hour = COMPARE[COMPARE.time == time]
@@ -100,6 +97,7 @@ for t,time in enumerate(times):
             # print("opened file %s" % fn)
         except:
             print("Couldn't find file %s" % fn)
+            continue
         
         # Smoke before assimilation (INIT = initial)
         smoke_before = hrrr['PM2_5_DRY_INIT'].isel(bottom_top=0).isel(Time=0).values
@@ -141,10 +139,11 @@ for t,time in enumerate(times):
             COMPARE.loc[i, "model_before_da"] = interpolated_value_before
             COMPARE.loc[i, "model_after_da"] = interpolated_value_after 
        
-        t0 = timing.time()
+        # t0 = timing.time()
 
 
 COMPARE.to_csv("Model2PurpleAir_run=%d.csv" % file, index=False)
+
 print(COMPARE)
         
             
