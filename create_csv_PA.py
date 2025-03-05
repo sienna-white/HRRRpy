@@ -15,8 +15,8 @@ if len(sys.argv) > 1:
 
 print("Running for file %d" % file) 
 
-start_date = '2018110806'   # Starting date for the files we want to look at 
-ndays = 14                # Number of days to look at
+start_date = '2019100100'   # Starting date for the files we want to look at 
+ndays = 30                # Number of days to look at
  
 
 # *** Functions ***
@@ -37,7 +37,7 @@ year = start_date_dt.year
 # *********************************************************************
 
 # Load the entire Purple Air dataset once
-pa_data_path = '/global/scratch/users/rasugrue/convert2bufr/validation/validation_data_%d_%d.csv' % (month, year)
+pa_data_path = '/global/scratch/users/rasugrue/convert2bufr/validation_vNov2024/validation_data_%d_%d.csv' % (month, year)
 df_pa = pd.read_csv(pa_data_path)
 df_pa['times'] = pd.to_datetime(df_pa['DATA_TIME_STAMP'])                       # convert to datetime 
 print("Loaded Purple Air data successfully. Number of entries:", len(df_pa)) 
@@ -92,20 +92,22 @@ for t,time in enumerate(times):
 
         # Open the HRRR data
         try:
-            fn ="/global/scratch/users/siennaw/gsi_2024/output/%d/wrf_inout_%s" % (file, to_file_date(time)) 
+            fn ="/global/scratch/users/siennaw/gsi_2024/output/2019_1/wrf_inout_%s" % (to_file_date(time)) 
             hrrr = xr.open_dataset(fn)
             # print("opened file %s" % fn)
+
+            # Smoke before assimilation (INIT = initial)
+            smoke_before = hrrr['PM2_5_DRY_INIT'].isel(bottom_top=0).isel(Time=0).values
+            smoke_before = np.squeeze(smoke_before).ravel()
+
+            # Smoke data after assimilation 
+            smoke_after = hrrr['PM2_5_DRY'].isel(bottom_top=0).isel(Time=0).values
+            smoke_after = np.squeeze(smoke_after).ravel()
         except:
             print("Couldn't find file %s" % fn)
             continue
         
-        # Smoke before assimilation (INIT = initial)
-        smoke_before = hrrr['PM2_5_DRY_INIT'].isel(bottom_top=0).isel(Time=0).values
-        smoke_before = np.squeeze(smoke_before).ravel()
 
-        # Smoke data after assimilation 
-        smoke_after = hrrr['PM2_5_DRY'].isel(bottom_top=0).isel(Time=0).values
-        smoke_after = np.squeeze(smoke_after).ravel()
 
         # Loop through all the sensors at that date. 
         for i, row in df_pa_hour.iterrows():
@@ -142,6 +144,7 @@ for t,time in enumerate(times):
         # t0 = timing.time()
 
 
+COMPARE = COMPARE.dropna(how="any", axis=0)
 COMPARE.to_csv("Model2PurpleAir_run=%d.csv" % file, index=False)
 
 print(COMPARE)

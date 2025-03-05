@@ -208,7 +208,8 @@ class HRRR:
         var_before       = ds['PM2_5_DRY_INIT'].isel(bottom_top=0).isel(Time=0)
         var_after        = ds['PM2_5_DRY'].isel(bottom_top=0).isel(Time=0)
         difference = var_after - var_before
-
+        print("difference:", np.min(difference.values))
+        print("difference:", np.max(difference.values))
         def mask_array(variable):
             threshold = -2 
             return np.ma.array (variable, mask=variable<threshold)
