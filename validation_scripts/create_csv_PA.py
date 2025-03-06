@@ -12,7 +12,6 @@ if len(sys.argv) > 1:
 # Otherwise just hardcode it:
 # file = 101
 
-
 print("Running for file %d" % file) 
 
 start_date = '2019100100'   # Starting date for the files we want to look at 
@@ -67,7 +66,7 @@ COMPARE["model_after_da"] = np.nan
 # *********************************************************************
 
 # Load mapping dictionary for PA --> Model Grid matching
-map_PA2HRRR = np.load('PA_to_HRRRgrid.npy',allow_pickle='TRUE').item()
+map_PA2HRRR = np.load('../grid/PA_to_HRRRgrid.npy',allow_pickle='TRUE').item()
 # *********************************************************************
 
 # file = 102

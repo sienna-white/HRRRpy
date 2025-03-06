@@ -1,4 +1,5 @@
-*.csv*.csv*.csv*.csv*.csv*.csv*.csv*.csv
+*.csv
+*.out
 *.csv
 *.nc
 *.png
